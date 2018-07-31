@@ -1,0 +1,15 @@
+---
+- name: Install nginx
+  hosts: appserver
+  become: yes
+
+  tasks:
+  - name: Add epel-release repo
+    yum: name=epel-release state=present
+
+  - name: install nginx
+    service: name=nginx  state=started
+
+  - name: Insert Index page
+    template: src=/etc/ansible/index.html
+              dest=/usr/share/nginx/html/index.html
