@@ -8,8 +8,10 @@
     yum: name=epel-release state=present
 
   - name: install nginx
-    service: name=nginx  state=started
+    yum: name=nginx  state=present
 
   - name: Insert Index page
     template: src=/etc/ansible/index.html
               dest=/usr/share/nginx/html/index.html
+  - name: start nginx
+    service: name=nginx state=started
